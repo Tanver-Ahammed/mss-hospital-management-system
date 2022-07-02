@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>MSS - Hospital Management System</title>
+</head>
+<body>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center"> Add New Division </h1>
+                <div>
+                    <p th:text="${message}" style="color: #318043; text-align: center"></p>
+                </div>
+                <div class="card-body">
+
+                    <!--blood donor form started....-->
+                    <form th:action="@{/division/save}" th:object="${divisionDTO}" method="post"
+                          enctype="multipart/form-data" onsubmit="return bloodDonorFormValidator()">
+
+                        <!--blood donor name div....-->
+                        <div class="mb-3">
+                            <label for="divisionName" class="form-label">Division Name</label>
+                            <input
+                                    type="text"
+                                    id="divisionName"
+                                    name="divisionName"
+                                    th:field="*{divisionName}"
+                                    th:value="${divisionDTO.divisionName}"
+                                    th:classappend="${#fields.hasErrors('divisionName') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackStudentId"
+                            >
+                            <span id="idMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('divisionName')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackBloodDonorName"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--student reset & submit div....-->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                    <!--blood donor form started....-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

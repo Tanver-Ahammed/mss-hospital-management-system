@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>MSS - Hospital Management System</title>
+</head>
+<body>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center"> Add New District </h1>
+                <div>
+                    <p th:text="${message}" style="color: #318043; text-align: center"></p>
+                </div>
+                <div class="card-body">
+
+                    <!--blood donor form started....-->
+                    <form th:action="@{/district/save}" th:object="${districtDTO}" method="post"
+                          enctype="multipart/form-data" onsubmit="return bloodDonorFormValidator()">
+
+
+                        <div class="mb-3">
+                            <label for="districtName" class="form-label">Division Name</label>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <br/>
+                                <select class="form-select form-control" name="locationId" id="location">
+                                    <option selected disabled>Select Location</option>
+                                    <th:forEach var="location" items="${locations}">
+                                        <option value="${location.id}">${location.locationName}</option>
+                                    </th:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--blood donor name div....-->
+                        <div class="mb-3">
+                            <label for="districtName" class="form-label">District Name</label>
+                            <input
+                                    type="text"
+                                    id="districtName"
+                                    name="districtName"
+                                    th:field="*{districtName}"
+                                    th:value="${districtDTO.districtName}"
+                                    th:classappend="${#fields.hasErrors('districtName') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackStudentId"
+                            >
+                            <span id="idMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('districtName')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackBloodDonorName"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--student reset & submit div....-->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                    <!--blood donor form started....-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
