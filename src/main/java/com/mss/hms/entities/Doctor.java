@@ -58,13 +58,12 @@ public class Doctor {
 
     private boolean isActive;
 
-    @OneToOne
-    private Address address;
+    private String address;
 
     @OneToMany(mappedBy = "doctor", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DoctorPatient> doctorPatients = new ArrayList<>();
 
-    @OneToMany(mappedBy = "doctor", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Attachment> attachments = new ArrayList<>();
 
 }

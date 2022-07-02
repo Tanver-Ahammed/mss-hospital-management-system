@@ -38,6 +38,8 @@ public class DoctorPatientDTO {
 
     private DoctorDTO doctorDTO;
 
+    private String address;
+
     private List<AttachmentDTO> attachmentDTOS;
 
 }

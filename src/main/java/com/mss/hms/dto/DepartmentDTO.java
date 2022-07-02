@@ -23,3 +23,5 @@ public class DepartmentDTO {
     private List<DoctorDTO> doctorDTOs = new ArrayList<>();
 
 }
+
+// @Pattern(regexp = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$")

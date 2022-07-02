@@ -1,6 +1,5 @@
 package com.mss.hms.dto;
 
-import com.mss.hms.entities.Address;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -33,7 +32,7 @@ public class TestPatientDTO {
 
     private String verificationCode;
 
-    private Address address;
+    private String address;
 
     private List<AttachmentDTO> attachment = new ArrayList<>();
 

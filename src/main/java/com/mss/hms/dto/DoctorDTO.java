@@ -75,7 +75,7 @@ public class DoctorDTO {
 
     private List<DoctorPatientDTO> doctorPatientDTOS = new ArrayList<>();
 
-    private AddressDTO addressDTO;
+    private String addressDTO;
 
     private List<AttachmentDTO> attachmentDTOS = new ArrayList<>();
 

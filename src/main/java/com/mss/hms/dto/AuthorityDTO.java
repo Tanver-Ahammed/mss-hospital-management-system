@@ -1,15 +1,6 @@
 package com.mss.hms.dto;
 
-import com.mss.hms.entities.Address;
-import com.mss.hms.entities.Attachment;
 import lombok.*;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,13 +13,15 @@ public class AuthorityDTO {
 
     private String name;
 
-    private String email;
-
     private String contact;
+
+    private String email;
 
     private int age;
 
     private String bloodGroup;
+
+    private String address;
 
     private String password;
 
@@ -38,8 +31,6 @@ public class AuthorityDTO {
 
     private boolean isActive;
 
-    private AddressDTO addressDTO;
-
-    private List<AttachmentDTO> attachmentDTOS = new ArrayList<>();
+    private AttachmentDTO attachmentDTO;
 
 }

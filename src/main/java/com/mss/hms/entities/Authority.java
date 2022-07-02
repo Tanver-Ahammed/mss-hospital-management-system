@@ -21,13 +21,15 @@ public class Authority {
 
     private String name;
 
-    private String email;
-
     private String contact;
+
+    private String email;
 
     private int age;
 
     private String bloodGroup;
+
+    private String address;
 
     private String password;
 
@@ -37,10 +39,8 @@ public class Authority {
 
     private boolean isActive;
 
-    @OneToOne
-    private Address address;
-
-    @OneToMany(mappedBy = "authority", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Attachment> attachments = new ArrayList<>();
+    @OneToOne(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "attachment_id_fk", referencedColumnName = "id")
+    private Attachment attachment;
 
 }

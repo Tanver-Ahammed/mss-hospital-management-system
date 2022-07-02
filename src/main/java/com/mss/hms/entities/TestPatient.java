@@ -36,13 +36,13 @@ public class TestPatient {
 
     private String verificationCode;
 
-    @OneToOne
-    private Address address;
+    private String address;
 
-    @OneToMany(mappedBy = "testPatient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Attachment> attachment = new ArrayList<>();
 
-    @OneToMany(mappedBy = "testPatient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //    @OneToMany(mappedBy = "testPatient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany
     private List<TestPatientHistory> testVsPatientHistories = new ArrayList<>();
 
 }

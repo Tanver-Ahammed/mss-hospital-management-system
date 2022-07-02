@@ -37,11 +37,14 @@ public class DoctorPatient {
 
     private String verificationCode;
 
+    private String address;
+
     @ManyToOne
     @JoinColumn(name = "doctor_patient_fk", referencedColumnName = "id")
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "doctorPatient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "doctorPatient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany
     private List<Attachment> attachments;
 
 }
