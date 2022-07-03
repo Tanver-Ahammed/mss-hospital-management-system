@@ -8,6 +8,7 @@ import lombok.*;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,8 +23,10 @@ public class AttachmentDTO {
 
     private String attachmentName;
 
+    @NotEmpty
     private String attachmentFileName;
 
+    @NotEmpty
     private String attachmentType;
 
 }

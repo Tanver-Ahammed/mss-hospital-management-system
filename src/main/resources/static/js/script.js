@@ -1,3 +1,7 @@
 function authorityFormValidator() {
 
 }
+
+function departmentFormValidator() {
+
+}

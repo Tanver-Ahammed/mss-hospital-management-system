@@ -20,6 +20,7 @@ public class DoctorPatientDTO {
     @Size(min = 3, max = 100, message = "doctor patient's name must be min of 3 to 100 character")
     private String name;
 
+    @NotBlank
     private String contact;
 
     private String email;

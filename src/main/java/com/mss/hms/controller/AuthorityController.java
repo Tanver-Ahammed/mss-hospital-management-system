@@ -23,7 +23,7 @@ public class AuthorityController {
     public String addAuthority(Model model) {
         model.addAttribute("authorityDTO", new AuthorityDTO());
         model.addAttribute("message", "");
-        return "registration-authority";
+        return "authority/registration-authority";
     }
 
     @PostMapping(path = "/save")
@@ -32,21 +32,21 @@ public class AuthorityController {
                                Model model) throws IOException {
         if (result.hasErrors()) {
             model.addAttribute("authorityDTO", authorityDTO);
-            return "registration-authority";
+            return "authority/registration-authority";
         }
 
         AuthorityDTO resultAuthorityDTO = this.authorityService.registrationAuthority(authorityDTO, authorityImage);
 
         // if image is not add
         if (resultAuthorityDTO == null) {
-            model.addAttribute("bloodDonorDTO", authorityDTO);
+            model.addAttribute("authorityDTO", authorityDTO);
             model.addAttribute("message", "please enter authority image...");
-            return "registration-authority";
+            return "authority/registration-authority";
         }
 
-        model.addAttribute("bloodDonorDTO", new AuthorityDTO());
+        model.addAttribute("authorityDTO", new AuthorityDTO());
         model.addAttribute("message", "authority is successfully added...");
-        return "registration-authority";
+        return "authority/registration-authority";
     }
 
 }

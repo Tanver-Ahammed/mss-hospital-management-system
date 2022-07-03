@@ -63,7 +63,7 @@ public class AuthorityServiceImpl implements AuthorityService {
         this.authorityRepository.save(authority);
 
         String siteURL = AppConstants.host + "/blood/donor/verify";
-        sendVerificationEmail(authorityDTO, siteURL);
+//        sendVerificationEmail(authorityDTO, siteURL);
 
         return authorityDTO;
     }

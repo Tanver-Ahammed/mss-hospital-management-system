@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>MSS - Hospital Management System</title>
+</head>
+<body>
+
+<section>
+    <div class="container mt-3">
+        <div class="row">
+            <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
+            <div class="container col-md-8">
+                <h3 class="text-center">List of Department</h3>
+                <hr>
+
+                <br>
+                <div th:if="${departmentDTOS.isEmpty()}">
+                    <td colspan="3" style="color: red"> No records Here!!!!</td>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Department Id</th>
+                        <th scope="col">Department Name</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Show All Doctor</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <div th:each="departmentDTO : ${departmentDTOS}">
+                        <tr>
+                            <td th:text="${departmentDTO.id}"></td>
+                            <td th:text="${departmentDTO.name}"></td>
+                            <td>
+                                <a th:href="@{${'/department/edit/' + departmentDTO.id}}"
+                                   class="btn btn-primary">
+                                    <i class="fas fa-pen text-primary" style="font-size: 1rem"></i>
+                                    Update
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{${'/department/' + departmentDTO.id +
+                                '/doctor/all'}}" class="btn btn-success">
+                                    <i class="fas fa-pen text-success" style="font-size: 1rem"></i>
+                                    All Doctor
+                                </a>
+                            </td>
+
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+        </div>
+    </div>
+
+    <!--    <div class="col-md-row">-->
+    <!--        <h1 class="text-center md-3">Welcome to Product App</h1>-->
+
+
+    <!--        <table class="table table-hover">-->
+    <!--            <thead class="table-dark">-->
+    <!--            <tr>-->
+    <!--                <th scope="col">Product Id</th>-->
+    <!--                <th scope="col">Product Name</th>-->
+    <!--                <th scope="col">Product Description</th>-->
+    <!--                <th scope="col">Product Price</th>-->
+    <!--                <th scope="col">Action</th>-->
+    <!--            </tr>-->
+    <!--            </thead>-->
+    <!--            <tbody>-->
+    <!--            <c:forEach items="${products }" var="p">-->
+    <!--                <tr>-->
+    <!--                    <th scope="row">TECHONLY${p.id }</th>-->
+    <!--                    <td>${p.name }</td>-->
+    <!--                    <td>${p.description }</td>-->
+    <!--                    <td><b>&#2547; ${p.price }</b></td>-->
+    <!--                    <td><a href="delete/${p.id }"><i-->
+    <!--                            class="fas fa-trash text-danger" style="font-size: 25px"></i></a>-->
+    <!--                        <a href="update/${p.id }"><i-->
+    <!--                                class="fas fa-pen text-primary" style="font-size: 25px"></i></a>-->
+    <!--                    </td>-->
+    <!--                </tr>-->
+    <!--            </c:forEach>-->
+    <!--            </tbody>-->
+    <!--        </table>-->
+
+    <!--        <div class="container text-center">-->
+    <!--            <a href="add-product" class="btn btn-outline-success">Add-->
+    <!--                Product</a>-->
+    <!--        </div>-->
+
+    <!--    </div>-->
+
+
+</section>
+
+</body>
+</html>
