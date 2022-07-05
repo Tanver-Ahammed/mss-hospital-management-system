@@ -35,6 +35,8 @@ public class DoctorPatientDTO {
 
     private String role;
 
+    private Integer serialNo;
+
     private String verificationCode;
 
     private DoctorDTO doctorDTO;

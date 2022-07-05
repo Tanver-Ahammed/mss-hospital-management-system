@@ -1,7 +1,6 @@
 package com.mss.hms.entities;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -48,9 +47,7 @@ public class Doctor {
 
     private String bloodGroup;
 
-    private String price;
-
-    private String password;
+    private Integer price;
 
     private String role;
 
@@ -60,10 +57,13 @@ public class Doctor {
 
     private String address;
 
+    private String password;
+
+    @OneToOne(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "attachment_id_fk", referencedColumnName = "id")
+    private Attachment attachment;
+
     @OneToMany(mappedBy = "doctor", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DoctorPatient> doctorPatients = new ArrayList<>();
-
-    @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Attachment> attachments = new ArrayList<>();
 
 }

@@ -1,8 +1,10 @@
 package com.mss.hms.dto;
 
-import com.mss.hms.entities.Department;
 import lombok.*;
 
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class DoctorDTO {
     @NotBlank
     private String email;
 
-    private Department department;
+    private DepartmentDTO departmentDTO;
 
     @NotBlank
     @Size(min = 3, max = 100, message = "doctor's degree must be min of 3 to 100 character")
@@ -60,12 +62,9 @@ public class DoctorDTO {
 
     private String bloodGroup;
 
-    @NotBlank
-    private String price;
-
-    @NotBlank
-    @Size(min = 5, max = 25, message = "doctor's password must be min of 8 to 25 character")
-    private String password;
+    @Min(value = 300, message = "minimum doctor price 300 tk.")
+    @Max(value = 1000, message = "maximum doctor price 1000 tk.")
+    private Integer price;
 
     private String role;
 
@@ -73,10 +72,14 @@ public class DoctorDTO {
 
     private boolean isActive;
 
-    private List<DoctorPatientDTO> doctorPatientDTOS = new ArrayList<>();
+    private String address;
 
-    private String addressDTO;
+    @NotBlank
+    @Size(min = 5, max = 25, message = "doctor's password must be min of 5 to 25 character")
+    private String password;
 
     private List<AttachmentDTO> attachmentDTOS = new ArrayList<>();
+
+    private List<DoctorPatientDTO> doctorPatientDTOS = new ArrayList<>();
 
 }

@@ -27,9 +27,9 @@ public class AuthorityController {
     }
 
     @PostMapping(path = "/save")
-    public String registration(@Valid @ModelAttribute("authorityDTO") AuthorityDTO authorityDTO, BindingResult result,
-                               @RequestParam("authorityImage") MultipartFile authorityImage,
-                               Model model) throws IOException {
+    public String registrationAuthority(@Valid @ModelAttribute("authorityDTO") AuthorityDTO authorityDTO, BindingResult result,
+                                        @RequestParam("authorityImage") MultipartFile authorityImage,
+                                        Model model) throws IOException {
         if (result.hasErrors()) {
             model.addAttribute("authorityDTO", authorityDTO);
             return "authority/registration-authority";

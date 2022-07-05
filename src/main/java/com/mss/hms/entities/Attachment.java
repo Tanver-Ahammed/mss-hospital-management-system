@@ -31,20 +31,4 @@ public class Attachment implements Serializable {
     @Column(name = "attachment_type")
     private String attachmentType;
 
-//    @ManyToOne
-//    @JoinColumn(name = "doctor_id_fk", referencedColumnName = "id")
-//    private Doctor doctor;
-
-//    @ManyToOne
-//    @JoinColumn(name = "doctor_Patient_id_fk", referencedColumnName = "id")
-//    private DoctorPatient doctorPatient;
-
-//    @ManyToOne
-//    @JoinColumn(name = "test_patient_id_fk", referencedColumnName = "id")
-//    private TestPatient testPatient;
-
-//    @ManyToOne
-//    @JoinColumn(name = "authority_id_fk", referencedColumnName = "id")
-//    private Authority authority;
-
 }

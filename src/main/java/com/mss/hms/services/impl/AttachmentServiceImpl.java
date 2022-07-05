@@ -1,7 +1,6 @@
 package com.mss.hms.services.impl;
 
 import com.mss.hms.dto.AttachmentDTO;
-import com.mss.hms.entities.Attachment;
 import com.mss.hms.repository.AttachmentRepository;
 import com.mss.hms.services.AttachmentService;
 import org.apache.commons.io.FilenameUtils;
