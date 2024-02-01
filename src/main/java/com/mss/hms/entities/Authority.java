@@ -1,10 +1,7 @@
 package com.mss.hms.entities;
 
+import jakarta.persistence.*;
 import lombok.*;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "authorities")
@@ -12,7 +9,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Authority {
 
     @Id

@@ -1,8 +1,12 @@
 package com.mss.hms.entities;
 
-import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 @Entity
@@ -11,12 +15,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Attachment implements Serializable {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "attachment_path")

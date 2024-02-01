@@ -1,14 +1,7 @@
 package com.mss.hms.dto;
 
-import com.mss.hms.entities.Authority;
-import com.mss.hms.entities.Doctor;
-import com.mss.hms.entities.DoctorPatient;
-import com.mss.hms.entities.TestPatient;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
 
 @NoArgsConstructor
 @AllArgsConstructor

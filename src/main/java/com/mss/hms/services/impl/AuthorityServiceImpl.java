@@ -8,14 +8,14 @@ import com.mss.hms.entities.Authority;
 import com.mss.hms.repository.AttachmentRepository;
 import com.mss.hms.repository.AuthorityRepository;
 import com.mss.hms.services.AuthorityService;
-import net.bytebuddy.utility.RandomString;
+import jakarta.mail.MessagingException;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.MessagingException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Objects;
