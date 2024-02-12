@@ -1,6 +1,8 @@
 package com.mss.hms.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,13 +23,16 @@ public class Attachment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "attachment_name")
+    @NotEmpty(message = "attachment name can't be empty!!")
+    @Size(min = 3, max = 100, message = "attachment's name must be min of 3 to 100 character")
     private String attachmentName;
 
-    @Column(name = "attachment_file_name")
+    @NotEmpty(message = "attachment file name can't be empty!!")
+    @Size(min = 3, max = 100, message = "attachment's file name must be min of 3 to 100 character")
     private String attachmentFileName;
 
-    @Column(name = "attachment_type")
+    @NotEmpty(message = "attachment type can't be empty!!")
+    @Size(min = 3, max = 100, message = "attachment's type must be min of 3 to 100 character")
     private String attachmentType;
 
 }

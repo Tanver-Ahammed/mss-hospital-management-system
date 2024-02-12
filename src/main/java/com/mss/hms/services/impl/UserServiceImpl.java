@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     // registration authority
     @Override
-    public UserDTO registrationAuthority(UserDTO authorityDTO, MultipartFile authorityImage)
+    public UserDTO registrationUser(UserDTO authorityDTO, MultipartFile authorityImage)
             throws IOException {
         if (Objects.equals(authorityImage.getOriginalFilename(), "")) {
             return null;
@@ -67,6 +68,27 @@ public class UserServiceImpl implements UserService {
 
         return authorityDTO;
     }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        return null;
+    }
+
+    @Override
+    public UserDTO getSingleUserById(Long userId) {
+        return null;
+    }
+
+    @Override
+    public UserDTO updateUser(UserDTO userDTO, Long userId) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteUser(Long userId) {
+        return false;
+    }
+
 
     // send email for verification
     private void sendVerificationEmail(UserDTO authorityDTO, String siteURL) {

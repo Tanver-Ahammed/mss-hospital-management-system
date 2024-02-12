@@ -1,6 +1,7 @@
 package com.mss.hms.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.sql.Date;
@@ -17,10 +18,13 @@ public class TestPatientHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private Date date;
 
+    @NotEmpty
     private Double price;
 
+    @NotEmpty
     private Integer discount;
 
     @ManyToOne

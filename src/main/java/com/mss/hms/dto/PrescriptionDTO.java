@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,10 +24,12 @@ public class PrescriptionDTO {
 
     private int discount;
 
+    private Boolean isApproveByDoctor;
+
     private UserDTO doctor;
 
     private PatientDTO patient;
 
-    private List<MedicineDTO> medicines = new ArrayList<>();
+    private List<MedicineDTO> medicines;
 
 }

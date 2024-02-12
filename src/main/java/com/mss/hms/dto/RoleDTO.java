@@ -13,6 +13,8 @@ public class RoleDTO {
 
     private Long id;
 
-    private String name;
+    private String roleType;
+
+    private String roleName;
 
 }

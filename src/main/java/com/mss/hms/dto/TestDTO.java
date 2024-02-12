@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -22,6 +21,6 @@ public class TestDTO {
 
     private Boolean isActive;
 
-    private List<TestPatientHistoryDTO> testVsPatientHistories = new ArrayList<>();
+    private List<TestPatientHistoryDTO> testVsPatientHistories;
 
 }

@@ -1,7 +1,11 @@
 package com.mss.hms.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,13 +23,20 @@ public class Prescription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "prescription date can't be empty!!")
     private Date date;
 
+    @NotEmpty(message = "prescription serial no can't be empty!!")
     private Short serialNo;
 
+    @NotEmpty(message = "prescription price can't be empty!!")
     private Double price;
 
+    @NotEmpty(message = "prescription date can't be empty!!")
     private int discount;
+
+    @NotEmpty
+    private Boolean isApproveByDoctor;
 
     @ManyToOne
     @JoinColumn(name = "test_id_fk", referencedColumnName = "id")
