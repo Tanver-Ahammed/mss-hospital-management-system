@@ -1,7 +1,7 @@
 # configure dataSource
 spring.datasource.url=jdbc:postgresql://localhost:5432/mss_hms?useSSL=false&allowPublicKeyRetrieval=true
-spring.datasource.username=postgres
-spring.datasource.password=12345
+spring.datasource.username=POSTGRES_DATABASE_USERNAME
+spring.datasource.password=POSTGRES_DATABASE_PASSWORD
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 # configure hibernate properties

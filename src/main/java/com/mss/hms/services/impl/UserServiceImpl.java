@@ -1,13 +1,13 @@
 package com.mss.hms.services.impl;
 
 import com.mss.hms.config.AppConstants;
-import com.mss.hms.dto.AuthorityDTO;
+import com.mss.hms.dto.UserDTO;
 import com.mss.hms.email.EmailSenderService;
 import com.mss.hms.entities.Attachment;
-import com.mss.hms.entities.Authority;
+import com.mss.hms.entities.User;
 import com.mss.hms.repository.AttachmentRepository;
-import com.mss.hms.repository.AuthorityRepository;
-import com.mss.hms.services.AuthorityService;
+import com.mss.hms.repository.UserRepository;
+import com.mss.hms.services.UserService;
 import jakarta.mail.MessagingException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.internal.bytebuddy.utility.RandomString;
@@ -21,10 +21,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 @Service
-public class AuthorityServiceImpl implements AuthorityService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private AuthorityRepository authorityRepository;
+    private UserRepository authorityRepository;
 
     @Autowired
     private AttachmentServiceImpl attachmentService;
@@ -43,7 +43,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     // registration authority
     @Override
-    public AuthorityDTO registrationAuthority(AuthorityDTO authorityDTO, MultipartFile authorityImage)
+    public UserDTO registrationAuthority(UserDTO authorityDTO, MultipartFile authorityImage)
             throws IOException {
         if (Objects.equals(authorityImage.getOriginalFilename(), "")) {
             return null;
@@ -52,11 +52,11 @@ public class AuthorityServiceImpl implements AuthorityService {
         Attachment attachment = this.modelMapper.map(this.attachmentService.addAttachment(authorityImage), Attachment.class);
         attachment.setAttachmentName("Image");
 
-        authorityDTO.setActive(false);
+        authorityDTO.setIsActive(false);
         String verificationCode = RandomString.make(64);
         authorityDTO.setVerificationCode(verificationCode);
 
-        Authority authority = this.modelMapper.map(authorityDTO, Authority.class);
+        User authority = this.modelMapper.map(authorityDTO, User.class);
 
         authority.setAttachment(attachment);
 
@@ -69,7 +69,7 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     // send email for verification
-    private void sendVerificationEmail(AuthorityDTO authorityDTO, String siteURL) {
+    private void sendVerificationEmail(UserDTO authorityDTO, String siteURL) {
         String subject = "Please, Verify your registration";
         siteURL += "/" + authorityDTO.getId() + "/" + authorityDTO.getVerificationCode();
         String emailContent = "<p><b>Dear " + authorityDTO.getName() + ",</b></p>"

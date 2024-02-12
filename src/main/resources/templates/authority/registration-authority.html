@@ -128,6 +128,7 @@
                                     required="required"
                                     aria-label="Default select example"
                                     aria-describedby="validationServer03FeedbackAuthorityEmail"
+                                    style="hover"
                             >
                                 <!--<option selected>Open this select menu</option>-->
                                 <option value="A+">A+</option>
@@ -148,34 +149,34 @@
                             </div>
                         </div>
 
-                        <!--authority user role div....-->
-                        <div class="mb-3">
-                            <label for="userRole" class="form-label">Authority User Role</label>
-                            <select
-                                    class="form-select"
-                                    type="text"
-                                    id="userRole"
-                                    name="role"
-                                    th:field="*{role}"
-                                    th:value="${authorityDTO.role}"
-                                    th:classappend="${#fields.hasErrors('role') ? 'is-invalid' : ''}"
-                                    required="required"
-                                    aria-label="Default select example"
-                                    aria-describedby="validationServer03FeedbackAuthorityRole"
-                            >
-                                <!--<option selected>Open this select menu</option>-->
-                                <option value="ROLE_ADMIN">ADMIN</option>
-                                <option value="ROLE_ADMINISTRATOR">ADMINISTRATOR</option>
-                                <option value="ROLE_REPRESENTATIVE">REPRESENTATIVE</option>
-                            </select>
-                            <span id="RoleMessage" style="color: red"></span>
-                            <div
-                                    th:each="e : ${#fields.errors('email')}"
-                                    th:text="${e}"
-                                    id="validationServer03FeedbackAuthorityRole"
-                                    class="invalid-feedback">
-                            </div>
-                        </div>
+<!--                        &lt;!&ndash;authority user role div....&ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="userRole" class="form-label">Authority User Role</label>-->
+<!--                            <select-->
+<!--                                    class="form-select"-->
+<!--                                    type="text"-->
+<!--                                    id="userRole"-->
+<!--                                    name="role"-->
+<!--                                    th:field="*{roles[0].name}"-->
+<!--                                    th:value="${authorityDTO.roles[0].name}"-->
+<!--                                    th:classappend="${#fields.hasErrors('role') ? 'is-invalid' : ''}"-->
+<!--                                    required="required"-->
+<!--                                    aria-label="Default select example"-->
+<!--                                    aria-describedby="validationServer03FeedbackAuthorityRole"-->
+<!--                            >-->
+<!--                                &lt;!&ndash;<option selected>Open this select menu</option>&ndash;&gt;-->
+<!--                                <option value="ROLE_ADMIN">ADMIN</option>-->
+<!--                                <option value="ROLE_ADMINISTRATOR">ADMINISTRATOR</option>-->
+<!--                                <option value="ROLE_REPRESENTATIVE">REPRESENTATIVE</option>-->
+<!--                            </select>-->
+<!--                            <span id="RoleMessage" style="color: red"></span>-->
+<!--                            <div-->
+<!--                                    th:each="e : ${#fields.errors('email')}"-->
+<!--                                    th:text="${e}"-->
+<!--                                    id="validationServer03FeedbackAuthorityRole"-->
+<!--                                    class="invalid-feedback">-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <!--blood donor address div....-->
                         <div class="mb-3">

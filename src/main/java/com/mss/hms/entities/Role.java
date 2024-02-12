@@ -6,28 +6,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "attachments")
+@Table(name = "roles")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Attachment implements Serializable {
+public class Role {
 
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "attachment_name")
-    private String attachmentName;
-
-    @Column(name = "attachment_file_name")
-    private String attachmentFileName;
-
-    @Column(name = "attachment_type")
-    private String attachmentType;
+    private String name;
 
 }

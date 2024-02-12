@@ -1,16 +1,16 @@
 package com.mss.hms.dto;
 
-import com.mss.hms.entities.Test;
-import com.mss.hms.entities.TestPatient;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Date;
+import java.sql.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class TestPatientHistoryDTO {
 
     private Long id;
@@ -19,8 +19,10 @@ public class TestPatientHistoryDTO {
 
     private Double price;
 
-    private Test test;
+    private Integer discount;
 
-    private TestPatient testPatient;
+    private TestDTO test;
+
+    private PatientDTO patient;
 
 }

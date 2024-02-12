@@ -41,8 +41,6 @@ public class AttachmentServiceImpl implements AttachmentService {
         String extension = FilenameUtils.getExtension(originalFileName);
         attachmentDTO.setAttachmentType(extension);
 
-        attachmentDTO.setAttachmentPath(path);
-
         // CascadeType = MERGE
 //        Attachment attachment = this.attachmentRepository.save(this.modelMapper.map(attachmentDTO,
 //                Attachment.class));

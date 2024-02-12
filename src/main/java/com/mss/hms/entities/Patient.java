@@ -3,18 +3,17 @@ package com.mss.hms.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "test_patients")
+@Table(name = "patients")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
-public class TestPatient {
+public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +25,11 @@ public class TestPatient {
 
     private String email;
 
-    private int age;
+    private Short age;
 
     private String bloodGroup;
+
+    private Short weight;
 
     private Date date;
 
@@ -39,10 +40,12 @@ public class TestPatient {
     private String address;
 
     @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Attachment> attachment = new ArrayList<>();
+    private List<Attachment> attachments = new ArrayList<>();
 
-    //    @OneToMany(mappedBy = "testPatient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OneToMany
-    private List<TestPatientHistory> testVsPatientHistories = new ArrayList<>();
+    @OneToMany(mappedBy = "patient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Prescription> prescriptions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "patient", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<TestPatientHistory> testPatientHistories = new ArrayList<>();
 
 }

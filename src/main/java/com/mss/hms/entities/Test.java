@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Test {
 
     @Id
@@ -23,7 +22,7 @@ public class Test {
 
     private Double price;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     @OneToMany(mappedBy = "test", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TestPatientHistory> testVsPatientHistories = new ArrayList<>();

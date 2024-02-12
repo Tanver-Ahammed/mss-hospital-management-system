@@ -1,15 +1,15 @@
 package com.mss.hms.services;
 
-import com.mss.hms.dto.AuthorityDTO;
+import com.mss.hms.dto.UserDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
 @Service
-public interface AuthorityService {
+public interface UserService {
 
     // registration authority
-    AuthorityDTO registrationAuthority(AuthorityDTO authorityDTO, MultipartFile authorityImage) throws IOException;
+    UserDTO registrationAuthority(UserDTO authorityDTO, MultipartFile authorityImage) throws IOException;
 
 }

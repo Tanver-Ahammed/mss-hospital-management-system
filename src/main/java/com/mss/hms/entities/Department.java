@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Department {
 
     @Id
@@ -22,6 +21,6 @@ public class Department {
     private String name;
 
     @OneToMany(mappedBy = "department", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Doctor> doctors = new ArrayList<>();
+    private List<User> doctors = new ArrayList<>();
 
 }

@@ -5,23 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class TestDTO {
+public class RoleDTO {
 
     private Long id;
 
     private String name;
-
-    private Double price;
-
-    private Boolean isActive;
-
-    private List<TestPatientHistoryDTO> testVsPatientHistories = new ArrayList<>();
 
 }

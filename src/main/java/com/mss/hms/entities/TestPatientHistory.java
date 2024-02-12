@@ -3,7 +3,7 @@ package com.mss.hms.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "test_patient_histories")
@@ -11,7 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class TestPatientHistory {
 
     @Id
@@ -22,12 +21,14 @@ public class TestPatientHistory {
 
     private Double price;
 
+    private Integer discount;
+
     @ManyToOne
     @JoinColumn(name = "test_id_fk", referencedColumnName = "id")
     private Test test;
 
     @ManyToOne
     @JoinColumn(name = "test_patient_id_fk", referencedColumnName = "id")
-    private TestPatient testPatient;
+    private Patient patient;
 
 }

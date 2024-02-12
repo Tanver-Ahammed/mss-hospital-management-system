@@ -5,23 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class TestDTO {
+public class MedicineDTO {
 
     private Long id;
 
     private String name;
 
-    private Double price;
+    private String companyName;
 
-    private Boolean isActive;
+    private String description;
 
-    private List<TestPatientHistoryDTO> testVsPatientHistories = new ArrayList<>();
+    private PrescriptionDTO prescription;
 
 }

@@ -6,22 +6,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class TestDTO {
+public class PrescriptionDTO {
 
     private Long id;
 
-    private String name;
+    private Date date;
+
+    private Short serialNo;
 
     private Double price;
 
-    private Boolean isActive;
+    private int discount;
 
-    private List<TestPatientHistoryDTO> testVsPatientHistories = new ArrayList<>();
+    private UserDTO doctor;
+
+    private PatientDTO patient;
+
+    private List<MedicineDTO> medicines = new ArrayList<>();
 
 }
