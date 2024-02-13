@@ -1,17 +1,14 @@
 package com.mss.hms.services.impl;
 
-import com.mss.hms.config.AppConstants;
 import com.mss.hms.dto.UserDTO;
 import com.mss.hms.email.EmailSenderService;
-import com.mss.hms.entities.Attachment;
 import com.mss.hms.entities.User;
+import com.mss.hms.exception.ResourceNotFoundException;
 import com.mss.hms.repository.AttachmentRepository;
 import com.mss.hms.repository.UserRepository;
 import com.mss.hms.services.UserService;
 import jakarta.mail.MessagingException;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.bytebuddy.utility.RandomString;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,54 +16,39 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository authorityRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private AttachmentServiceImpl attachmentService;
+    private final AttachmentServiceImpl attachmentService;
 
-    @Autowired
-    private AttachmentRepository attachmentRepository;
+    private final EmailSenderService emailSenderService;
 
-    @Autowired
-    private EmailSenderService emailSenderService;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Value("${project.image}")
     private String path;
 
+    public UserServiceImpl(UserRepository userRepository,
+                           AttachmentServiceImpl attachmentService,
+                           AttachmentRepository attachmentRepository,
+                           EmailSenderService emailSenderService,
+                           ModelMapper modelMapper) {
+        this.userRepository = userRepository;
+        this.attachmentService = attachmentService;
+        this.emailSenderService = emailSenderService;
+        this.modelMapper = modelMapper;
+    }
+
     // registration authority
     @Override
-    public UserDTO registrationUser(UserDTO authorityDTO, MultipartFile authorityImage)
+    public UserDTO registrationUser(UserDTO userDTO, MultipartFile authorityImage)
             throws IOException {
-        if (Objects.equals(authorityImage.getOriginalFilename(), "")) {
-            return null;
-        }
 
-        Attachment attachment = this.modelMapper.map(this.attachmentService.addAttachment(authorityImage), Attachment.class);
-        attachment.setAttachmentName("Image");
 
-        authorityDTO.setIsActive(false);
-        String verificationCode = RandomString.make(64);
-        authorityDTO.setVerificationCode(verificationCode);
-
-        User authority = this.modelMapper.map(authorityDTO, User.class);
-
-        authority.setAttachment(attachment);
-
-        this.authorityRepository.save(authority);
-
-        String siteURL = AppConstants.host + "/blood/donor/verify";
-//        sendVerificationEmail(authorityDTO, siteURL);
-
-        return authorityDTO;
+        return userDTO;
     }
 
     @Override
@@ -89,6 +71,19 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    protected User getUserById(Long userId) {
+        return this.userRepository.findById(userId).orElseThrow(() ->
+                new ResourceNotFoundException("User", "Id", userId)
+        );
+    }
+
+    protected UserDTO userToDTO(User user) {
+        return this.modelMapper.map(user, UserDTO.class);
+    }
+
+    protected User dtoToUser(UserDTO userDTO) {
+        return this.modelMapper.map(userDTO, User.class);
+    }
 
     // send email for verification
     private void sendVerificationEmail(UserDTO authorityDTO, String siteURL) {

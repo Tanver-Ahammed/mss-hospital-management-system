@@ -33,6 +33,7 @@ public class Test {
     @Max(value = 50000)
     private Double price;
 
+    @NotEmpty
     private Boolean isActive;
 
     @OneToMany(mappedBy = "test", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)

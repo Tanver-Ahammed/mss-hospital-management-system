@@ -2,6 +2,7 @@ package com.mss.hms.services.impl;
 
 import com.mss.hms.dto.DepartmentDTO;
 import com.mss.hms.entities.Department;
+import com.mss.hms.entities.Patient;
 import com.mss.hms.exception.ResourceNotFoundException;
 import com.mss.hms.repository.DepartmentRepository;
 import com.mss.hms.services.DepartmentService;
@@ -52,4 +53,19 @@ public class DepartmentServiceImpl implements DepartmentService {
         department.setName(departmentDTO.getName());
         return this.modelMapper.map(this.departmentRepository.save(department), DepartmentDTO.class);
     }
+
+    protected Department getDepartmentById(Long departmentId) {
+        return this.departmentRepository.findById(departmentId).orElseThrow(() ->
+                new ResourceNotFoundException("Patient", "Id", departmentId)
+        );
+    }
+
+    protected DepartmentDTO patientToDTO(Department department) {
+        return this.modelMapper.map(department, DepartmentDTO.class);
+    }
+
+    protected Department dtoToDepartment(DepartmentDTO departmentDTO) {
+        return this.modelMapper.map(departmentDTO, Department.class);
+    }
+
 }

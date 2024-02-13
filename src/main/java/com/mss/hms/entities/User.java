@@ -56,13 +56,7 @@ public class User {
     @Size(min = 3, max = 100, message = "user's password must be min of 3 to 100 character")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
-    private List<Role> roles;
-
+    @NotEmpty
     private String verificationCode;
 
     @NotEmpty
@@ -70,6 +64,13 @@ public class User {
 
     @NotEmpty
     private Boolean isEnable;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    private List<Role> roles;
 
     @ManyToOne
     @JoinColumn(name = "department_id_fk", referencedColumnName = "id")

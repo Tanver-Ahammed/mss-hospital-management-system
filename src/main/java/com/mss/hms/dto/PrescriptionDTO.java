@@ -1,5 +1,6 @@
 package com.mss.hms.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,14 +17,19 @@ public class PrescriptionDTO {
 
     private Long id;
 
+    @NotEmpty(message = "prescription date can't be empty!!")
     private Date date;
 
+//    @NotEmpty(message = "prescription serial no can't be empty!!")
     private Short serialNo;
 
+    @NotEmpty(message = "prescription price can't be empty!!")
     private Double price;
 
+    @NotEmpty(message = "prescription date can't be empty!!")
     private int discount;
 
+//    @NotEmpty
     private Boolean isApproveByDoctor;
 
     private UserDTO doctor;
