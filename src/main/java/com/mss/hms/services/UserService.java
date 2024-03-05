@@ -1,7 +1,7 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.UserDTO;
-import com.mss.hms.email.EmailSenderService;
+import com.mss.hms.message.email.EmailSenderService;
 import com.mss.hms.entities.User;
 import com.mss.hms.exception.ResourceNotFoundException;
 import com.mss.hms.repository.AttachmentRepository;

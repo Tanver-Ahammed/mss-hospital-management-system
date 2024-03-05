@@ -25,14 +25,14 @@ public class Attachment implements Serializable {
 
     @NotEmpty(message = "attachment name can't be empty!!")
     @Size(min = 3, max = 100, message = "attachment's name must be min of 3 to 100 character")
-    private String attachmentName;
+    private String name;
 
     @NotEmpty(message = "attachment file name can't be empty!!")
     @Size(min = 3, max = 100, message = "attachment's file name must be min of 3 to 100 character")
-    private String attachmentFileName;
+    private String fileName;
 
     @NotEmpty(message = "attachment type can't be empty!!")
     @Size(min = 3, max = 100, message = "attachment's type must be min of 3 to 100 character")
-    private String attachmentType;
+    private String type;
 
 }

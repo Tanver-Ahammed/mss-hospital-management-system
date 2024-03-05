@@ -10,7 +10,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 COPY --from=ems_backend_builder /app/target/mss-hospital-management-system-0.0.1-SNAPSHOT.jar mss-hms.jar
 
-EXPOSE 8080
+EXPOSE 8081
 
 # Specify the default command to run on startup
 CMD ["java", "-jar", "mss-hms.jar"]

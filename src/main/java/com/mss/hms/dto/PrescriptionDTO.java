@@ -21,7 +21,7 @@ public class PrescriptionDTO {
     private Date date;
 
 //    @NotEmpty(message = "prescription serial no can't be empty!!")
-    private Short serialNo;
+    private Integer serialNo;
 
     @NotEmpty(message = "prescription price can't be empty!!")
     private Double price;

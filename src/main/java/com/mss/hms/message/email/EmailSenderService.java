@@ -1,4 +1,4 @@
-package com.mss.hms.email;
+package com.mss.hms.message.email;
 
 import com.mss.hms.config.AppConstants;
 import jakarta.mail.MessagingException;

@@ -14,7 +14,7 @@
     <name>mss-hospital-management-system</name>
     <description>mss-hospital-management-system</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>

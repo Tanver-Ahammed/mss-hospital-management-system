@@ -34,10 +34,10 @@ public class AttachmentService {
         }
 
         String originalFileName = this.fileService.uploadImage(path, multipartFile);
-        attachmentDTO.setAttachmentFileName(originalFileName);
+        attachmentDTO.setFileName(originalFileName);
 
         String extension = FilenameUtils.getExtension(originalFileName);
-        attachmentDTO.setAttachmentType(extension);
+        attachmentDTO.setType(extension);
 
         // CascadeType = MERGE
 //        Attachment attachment = this.attachmentRepository.save(this.modelMapper.map(attachmentDTO,
