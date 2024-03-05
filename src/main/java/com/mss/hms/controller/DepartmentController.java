@@ -1,7 +1,7 @@
 package com.mss.hms.controller;
 
 import com.mss.hms.dto.DepartmentDTO;
-import com.mss.hms.services.impl.DepartmentServiceImpl;
+import com.mss.hms.services.DepartmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.List;
 public class DepartmentController {
 
     @Autowired
-    private DepartmentServiceImpl departmentService;
+    private DepartmentService departmentService;
 
     @GetMapping(path = "/add")
     public String addDepartment(Model model) {

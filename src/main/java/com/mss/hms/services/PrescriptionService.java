@@ -1,21 +1,53 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.PrescriptionDTO;
-import org.springframework.stereotype.Service;
+import com.mss.hms.entities.Prescription;
+import com.mss.hms.exception.ResourceNotFoundException;
+import com.mss.hms.repository.PrescriptionRepository;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
-@Service
-public interface PrescriptionService {
+@AllArgsConstructor
+public class PrescriptionService {
 
-    PrescriptionDTO addPrescription(PrescriptionDTO prescriptionDTO);
+    private final PrescriptionRepository prescriptionRepository;
 
-    List<PrescriptionDTO> getAllPrescriptions();
+    private final ModelMapper modelMapper;
 
-    PrescriptionDTO getSingleDepartmentById(Long prescriptionId);
+    public PrescriptionDTO addPrescription(PrescriptionDTO prescriptionDTO) {
+        return null;
+    }
 
-    PrescriptionDTO updatePrescription(PrescriptionDTO prescriptionDTO, Long prescriptionId);
+    public List<PrescriptionDTO> getAllPrescriptions() {
+        return null;
+    }
 
-    boolean deletePrescription(Long prescriptionId);
+    public PrescriptionDTO getSingleDepartmentById(Long prescriptionId) {
+        return null;
+    }
+
+    public PrescriptionDTO updatePrescription(PrescriptionDTO prescriptionDTO, Long prescriptionId) {
+        return null;
+    }
+
+    public boolean deletePrescription(Long prescriptionId) {
+        return false;
+    }
+
+    protected Prescription getPrescriptionById(Long prescriptionId) {
+        return this.prescriptionRepository.findById(prescriptionId).orElseThrow(() ->
+                new ResourceNotFoundException("Patient", "Id", prescriptionId)
+        );
+    }
+
+    protected PrescriptionDTO prescriptionToDTO(Prescription prescription) {
+        return this.modelMapper.map(prescription, PrescriptionDTO.class);
+    }
+
+    protected Prescription dtoToPrescription(PrescriptionDTO prescriptionDTO) {
+        return this.modelMapper.map(prescriptionDTO, Prescription.class);
+    }
 
 }

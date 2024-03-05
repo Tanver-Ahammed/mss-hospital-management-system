@@ -1,6 +1,5 @@
-package com.mss.hms.services.impl;
+package com.mss.hms.services;
 
-import com.mss.hms.services.FileService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,10 +9,9 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
-public class FileServiceImpl implements FileService {
+public class FileServiceImpl {
 
     // upload file
-    @Override
     public String uploadImage(String path, MultipartFile multipartFile) throws IOException {
 
         // file name
@@ -39,7 +37,6 @@ public class FileServiceImpl implements FileService {
     }
 
     // delete file
-    @Override
     public boolean deleteImage(String path, String imageName) throws IOException {
         String imagePath = path + File.separator + imageName;
         File file = new File(imagePath);
@@ -47,7 +44,6 @@ public class FileServiceImpl implements FileService {
     }
 
     // get file
-    @Override
     public InputStream getResource(String path, String fileName) throws FileNotFoundException {
         String fullPath = path + File.separator + fileName;
         return new FileInputStream(fullPath);

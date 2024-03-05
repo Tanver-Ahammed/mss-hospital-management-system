@@ -1,21 +1,53 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.TestDTO;
-import org.springframework.stereotype.Service;
+import com.mss.hms.entities.Test;
+import com.mss.hms.exception.ResourceNotFoundException;
+import com.mss.hms.repository.TestRepository;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
-@Service
-public interface TestService {
+@AllArgsConstructor
+public class TestService {
 
-    TestDTO addTest(TestDTO testDTO);
+    private final TestRepository testRepository;
 
-    List<TestDTO> getAllTests();
+    private final ModelMapper modelMapper;
 
-    TestDTO getSingleTestById(Long testId);
+    public TestDTO addTest(TestDTO testDTO) {
+        return null;
+    }
 
-    TestDTO updateTest(TestDTO testDTO, Long testId);
+    public List<TestDTO> getAllTests() {
+        return null;
+    }
 
-    boolean deleteTest(Long testId);
-    
+    public TestDTO getSingleTestById(Long testId) {
+        return null;
+    }
+
+    public TestDTO updateTest(TestDTO testDTO, Long testId) {
+        return null;
+    }
+
+    public boolean deleteTest(Long testId) {
+        return false;
+    }
+
+    protected Test getTestById(Long TestId) {
+        return this.testRepository.findById(TestId).orElseThrow(() ->
+                new ResourceNotFoundException("Test", "Id", TestId)
+        );
+    }
+
+    protected TestDTO TestToDTO(Test Test) {
+        return this.modelMapper.map(Test, TestDTO.class);
+    }
+
+    protected Test dtoToTest(TestDTO TestDTO) {
+        return this.modelMapper.map(TestDTO, Test.class);
+    }
+
 }

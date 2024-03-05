@@ -1,21 +1,53 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.TestPatientHistoryDTO;
-import org.springframework.stereotype.Service;
+import com.mss.hms.entities.TestPatientHistory;
+import com.mss.hms.exception.ResourceNotFoundException;
+import com.mss.hms.repository.TestPatientHistoryRepository;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
-@Service
-public interface TestPatientHistoryService {
+@AllArgsConstructor
+public class TestPatientHistoryService {
 
-    TestPatientHistoryDTO addTestPatientHistory(TestPatientHistoryDTO testPatientHistoryDTO);
+    private final TestPatientHistoryRepository testPatientHistoryRepository;
 
-    List<TestPatientHistoryDTO> getAllTestPatientHistories();
+    private final ModelMapper modelMapper;
 
-    TestPatientHistoryDTO getSingleTestPatientHistoryDTOById(Long testPatientHistoryId);
+    public TestPatientHistoryDTO addTestPatientHistory(TestPatientHistoryDTO testPatientHistoryDTO) {
+        return null;
+    }
 
-    TestPatientHistoryDTO updateTestPatientHistory(TestPatientHistoryDTO testPatientHistoryDTO, Long testPatientHistoryId);
+    public List<TestPatientHistoryDTO> getAllTestPatientHistories() {
+        return null;
+    }
 
-    boolean deleteTestPatientHistory(Long TestPatientHistoryId);
+    public TestPatientHistoryDTO getSingleTestPatientHistoryDTOById(Long testPatientHistoryId) {
+        return null;
+    }
+
+    public TestPatientHistoryDTO updateTestPatientHistory(TestPatientHistoryDTO testPatientHistoryDTO, Long testPatientHistoryId) {
+        return null;
+    }
+
+    public boolean deleteTestPatientHistory(Long TestPatientHistoryId) {
+        return false;
+    }
+
+    protected TestPatientHistory getTestPatientHistoryById(Long testPatientHistoryId) {
+        return this.testPatientHistoryRepository.findById(testPatientHistoryId).orElseThrow(() ->
+                new ResourceNotFoundException("Patient", "Id", testPatientHistoryId)
+        );
+    }
+
+    protected TestPatientHistoryDTO testPatientHistoryToDTO(TestPatientHistory testPatientHistory) {
+        return this.modelMapper.map(testPatientHistory, TestPatientHistoryDTO.class);
+    }
+
+    protected TestPatientHistory dtoToTestPatientHistory(TestPatientHistoryDTO testPatientHistoryDTO) {
+        return this.modelMapper.map(testPatientHistoryDTO, TestPatientHistory.class);
+    }
 
 }

@@ -1,21 +1,53 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.PatientDTO;
-import org.springframework.stereotype.Service;
+import com.mss.hms.entities.Patient;
+import com.mss.hms.exception.ResourceNotFoundException;
+import com.mss.hms.repository.PatientRepository;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
-@Service
-public interface PatientService {
+@AllArgsConstructor
+public class PatientService {
 
-    PatientDTO addPatient(PatientDTO patientDTO);
+    private final PatientRepository patientRepository;
 
-    List<PatientDTO> getAllPatients();
+    private final ModelMapper modelMapper;
 
-    PatientDTO getSinglePatientById(Long patientId);
+    public PatientDTO addPatient(PatientDTO patientDTO) {
+        return null;
+    }
 
-    PatientDTO updatePatient(PatientDTO patientDTO, Long patientId);
+    public List<PatientDTO> getAllPatients() {
+        return null;
+    }
 
-    boolean deletePatient(Long patientId);
+    public PatientDTO getSinglePatientById(Long patientId) {
+        return null;
+    }
+
+    public PatientDTO updatePatient(PatientDTO patientDTO, Long patientId) {
+        return null;
+    }
+
+    public boolean deletePatient(Long patientId) {
+        return false;
+    }
+
+    protected Patient getPatientById(Long patientId) {
+        return this.patientRepository.findById(patientId).orElseThrow(() ->
+                new ResourceNotFoundException("Patient", "Id", patientId)
+        );
+    }
+
+    protected PatientDTO patientToDTO(Patient patient) {
+        return this.modelMapper.map(patient, PatientDTO.class);
+    }
+
+    protected Patient dtoToPatient(PatientDTO patientDTO) {
+        return this.modelMapper.map(patientDTO, Patient.class);
+    }
 
 }

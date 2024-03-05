@@ -1,7 +1,7 @@
 package com.mss.hms.controller;
 
 import com.mss.hms.dto.UserDTO;
-import com.mss.hms.services.impl.UserServiceImpl;
+import com.mss.hms.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.io.IOException;
 @RequestMapping(path = "/user")
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @PostMapping("/registration")
     public ResponseEntity<UserDTO> registrationUser(@RequestBody UserDTO userDTO) throws IOException {

@@ -1,19 +1,55 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.MedicineDTO;
+import com.mss.hms.entities.Medicine;
+import com.mss.hms.exception.ResourceNotFoundException;
+import com.mss.hms.repository.MedicineRepository;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface MedicineService {
+@Service
+@AllArgsConstructor
+public class MedicineService {
 
-    MedicineDTO addMedicine(MedicineDTO medicineDTO);
+    private MedicineRepository medicineRepository;
 
-    List<MedicineDTO> getAllMedicines();
+    private final ModelMapper modelMapper;
 
-    MedicineDTO getSingleMedicineById(Long medicineId);
+    public MedicineDTO addMedicine(MedicineDTO medicineDTO) {
+        return null;
+    }
 
-    MedicineDTO updateMedicine(MedicineDTO MedicineDTO, Long medicineId);
+    public List<MedicineDTO> getAllMedicines() {
+        return null;
+    }
 
-    boolean deleteMedicine(Long medicineId);
+    public MedicineDTO getSingleMedicineById(Long departmentId) {
+        return null;
+    }
+
+    public MedicineDTO updateMedicine(MedicineDTO MedicineDTO, Long medicineId) {
+        return null;
+    }
+
+    public boolean deleteMedicine(Long medicineId) {
+        return false;
+    }
+
+    protected Medicine getMedicineById(Long medicineId) {
+        return this.medicineRepository.findById(medicineId).orElseThrow(() ->
+                new ResourceNotFoundException("Medicine", "Id", medicineId)
+        );
+    }
+
+    protected MedicineDTO medicineToDTO(Medicine medicine) {
+        return this.modelMapper.map(medicine, MedicineDTO.class);
+    }
+
+    protected Medicine dtoToMedicine(MedicineDTO medicineDTO) {
+        return this.modelMapper.map(medicineDTO, Medicine.class);
+    }
 
 }
