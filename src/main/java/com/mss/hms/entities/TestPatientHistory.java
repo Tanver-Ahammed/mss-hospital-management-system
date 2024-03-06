@@ -18,13 +18,10 @@ public class TestPatientHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     private Date date;
 
-    @NotEmpty
     private Double price;
 
-    @NotEmpty
     private Integer discount;
 
     @ManyToOne

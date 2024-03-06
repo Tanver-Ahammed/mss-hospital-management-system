@@ -13,14 +13,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ResourceNotFoundException.class)
     public String resourceNotFoundException(ResourceNotFoundException exception, Model model) {
         model.addAttribute("error_message", exception.getMessage());
-        return "exception_page";
+        return "404";
     }
 
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
     public String exception(Exception exception, Model model) {
         model.addAttribute("error_message", exception.getMessage());
-        return "exception_page";
+        return "404";
     }
 
 }

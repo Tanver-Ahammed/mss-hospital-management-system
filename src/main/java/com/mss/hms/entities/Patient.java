@@ -25,32 +25,21 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "patient name can't be empty!!")
-    @Size(min = 3, max = 100, message = "patient's name must be min of 3 to 100 character")
     private String name;
 
-    @NotEmpty(message = "patient contact can't be empty!!")
-    @Size(min = 3, max = 100, message = "patient's contact must be min of 3 to 100 character")
     private String contact;
 
 //    @Email
     private String email;
 
-    @NotEmpty
-    @Min(value = 0)
-    @Max(value = 150)
     private Short age;
 
     private String bloodGroup;
 
-    @Min(value = 0)
-    @Max(value = 200)
     private Short weight;
 
-    @NotEmpty
     private Date date;
 
-    @NotEmpty
     private String verificationCode;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

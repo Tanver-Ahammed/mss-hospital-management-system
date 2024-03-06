@@ -24,16 +24,10 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "test name can't be empty!!")
-    @Size(min = 3, max = 100, message = "test's name must be min of 3 to 100 character")
     private String name;
 
-    @NotEmpty(message = "department name can't be empty!!")
-    @Min(value = 0)
-    @Max(value = 50000)
     private Double price;
 
-    @NotEmpty
     private Boolean isActive;
 
     @OneToMany(mappedBy = "test", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)

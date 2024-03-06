@@ -26,7 +26,7 @@ public class UserDTO {
 
     private String email;
 
-    @NotEmpty
+    @NotNull
     @Min(value = 0)
     @Max(value = 150)
     private Short age;

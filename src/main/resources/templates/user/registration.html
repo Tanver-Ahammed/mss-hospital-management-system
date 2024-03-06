@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+
+<body>
+
+<section>
+    <!-- registration Start -->
+    <div class="container col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+        <div class="bg-light rounded p-5">
+            <h1 class="text-center"> Add New Authority or Doctor </h1>
+            <form th:action="@{/user/save}" th:object="${userDTO}" method="post"
+                  enctype="multipart/form-data">
+                <div class="row g-3">
+
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    th:field="*{name}"
+                                    class="form-control"
+                                    placeholder="Enter Name"
+                                    required="required"
+                            >
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input
+                                    id="contact"
+                                    type="text"
+                                    name="contact"
+                                    th:field="*{contact}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                                    required="required"
+                            >
+                            <label for="contact">Contact</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    th:field="*{email}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                                    required="required"
+                            >
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input
+                                    id="age"
+                                    type="number"
+                                    min="15"
+                                    max="100"
+                                    name="age"
+                                    th:field="*{age}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                                    required="required"
+                            >
+                            <label for="age">Age</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <select
+                                    class="form-select"
+                                    type="text"
+                                    id="bloodGroup"
+                                    name="bloodGroupName"
+                                    th:field="*{bloodGroup}"
+                                    th:value="${userDTO.bloodGroup}"
+                                    required="required"
+                            >
+                                <!--<option selected>Open this select menu</option>-->
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="O+">O+</option>
+                                <option value="A-">A-</option>
+                                <option value="B-">B-</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O-">O-</option>
+                            </select>
+                            <label for="bloodGroup">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input
+                                    id="degree"
+                                    type="text"
+                                    name="degree"
+                                    th:field="*{degree}"
+                                    class="form-control"
+                                    placeholder="Enter Degree"
+                                    required="required"
+                            >
+                            <label for="contact">Degree</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input
+                                    id="visitPrice"
+                                    type="number"
+                                    name="visitPrice"
+                                    min="0"
+                                    max="5000"
+                                    th:field="*{visitPrice}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                                    required="required"
+                            >
+                            <label for="email">Visit Price</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input
+                                    id="institution"
+                                    type="text"
+                                    name="institution"
+                                    th:field="*{institution}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                                    required="required"
+                            >
+                            <label for="email">Institution</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input
+                                    id="address"
+                                    type="text"
+                                    name="address"
+                                    th:field="*{address}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                                    required="required"
+                            >
+                            <label for="address">Address</label>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <button class="btn btn-danger w-100 py-3" type="reset">Cancel</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- registration End -->
+</section>
+
+</body>
+</html>

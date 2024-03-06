@@ -1,6 +1,7 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.UserDTO;
+import com.mss.hms.entities.Role;
 import com.mss.hms.message.email.EmailSenderService;
 import com.mss.hms.entities.User;
 import com.mss.hms.exception.ResourceNotFoundException;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,8 +46,16 @@ public class UserService {
     // registration authority
     public UserDTO registrationUser(UserDTO userDTO, MultipartFile authorityImage)
             throws IOException {
-
-
+        User user = this.dtoToUser(userDTO);
+        List<Role> roles = new ArrayList<>();
+        Role role = new Role();
+        role.setId(1L);
+        roles.add(role);
+        user.setIsActive(false);
+        user.setIsEnable(false);
+//        user.setRoles(roles);
+        user.setVerificationCode("65456456454684");
+        this.userRepository.save(user);
         return userDTO;
     }
 
