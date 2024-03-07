@@ -66,4 +66,8 @@ public class UserDTO {
 
     private List<VisitedDayDTO> visitedDays;
 
+    private String startingTime;
+
+    private String endingTime;
+
 }

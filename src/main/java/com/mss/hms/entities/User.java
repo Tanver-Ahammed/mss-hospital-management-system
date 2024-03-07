@@ -67,4 +67,8 @@ public class User {
     )
     private List<VisitedDay> visitedDays;
 
+    private String startingTime;
+
+    private String endingTime;
+
 }

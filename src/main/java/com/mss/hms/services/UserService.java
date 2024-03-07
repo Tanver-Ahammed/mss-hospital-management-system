@@ -1,15 +1,17 @@
 package com.mss.hms.services;
 
 import com.mss.hms.dto.UserDTO;
+import com.mss.hms.entities.Attachment;
 import com.mss.hms.entities.Role;
+import com.mss.hms.entities.VisitedDay;
 import com.mss.hms.message.email.EmailSenderService;
 import com.mss.hms.entities.User;
 import com.mss.hms.exception.ResourceNotFoundException;
-import com.mss.hms.repository.AttachmentRepository;
 import com.mss.hms.repository.UserRepository;
 import jakarta.mail.MessagingException;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Value;
+import org.modelmapper.internal.bytebuddy.utility.RandomString;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,46 +19,63 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
 
     private final AttachmentService attachmentService;
 
+    private final RoleService roleService;
+
+    private final DepartmentService departmentService;
+
+    private final VisitedDayService visitedDayService;
+
     private final EmailSenderService emailSenderService;
 
     private final ModelMapper modelMapper;
 
-    @Value("${project.image}")
-    private String path;
-
-    public UserService(UserRepository userRepository,
-                       AttachmentService attachmentService,
-                       AttachmentRepository attachmentRepository,
-                       EmailSenderService emailSenderService,
-                       ModelMapper modelMapper) {
-        this.userRepository = userRepository;
-        this.attachmentService = attachmentService;
-        this.emailSenderService = emailSenderService;
-        this.modelMapper = modelMapper;
-    }
-
     // registration authority
-    public UserDTO registrationUser(UserDTO userDTO, MultipartFile authorityImage)
+    public void registrationUser(UserDTO userDTO, Long[] roles, Long departmentId, Long[] visitedDays, MultipartFile profilePhoto)
             throws IOException {
+
+        // image upload
+        if (Objects.equals(profilePhoto.getOriginalFilename(), "")) {
+            return;
+        }
+        Attachment attachment = this.modelMapper
+                .map(this.attachmentService.addAttachment(profilePhoto), Attachment.class);
+        attachment.setName("Image");
+
         User user = this.dtoToUser(userDTO);
-        List<Role> roles = new ArrayList<>();
-        Role role = new Role();
-        role.setId(1L);
-        roles.add(role);
+        user.setAttachment(attachment);
+
+        // role set
+        List<Role> roleList = new ArrayList<>();
+        roleList.add(this.roleService.getRoleById(roles[0]));
+        user.setRoles(roleList);
+
+        // department set
+        user.setDepartment(departmentService.getDepartmentById(departmentId));
+
+        // doctor visited date set
+        List<VisitedDay> visitedDaysList = new ArrayList<>();
+        for (Long visitedDay : visitedDays) {
+            visitedDaysList.add(this.visitedDayService.getVisitedDayById(visitedDay));
+        }
+        user.setVisitedDays(visitedDaysList);
+
         user.setIsActive(false);
         user.setIsEnable(false);
-//        user.setRoles(roles);
-        user.setVerificationCode("65456456454684");
+        String verificationCode = RandomString.make(64);
+        user.setVerificationCode(verificationCode);
+
+        // save user
         this.userRepository.save(user);
-        return userDTO;
     }
 
     public List<UserDTO> getAllUsers() {

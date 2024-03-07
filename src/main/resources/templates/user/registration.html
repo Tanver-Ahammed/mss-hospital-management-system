@@ -96,7 +96,7 @@
                                 <option value="AB-">AB-</option>
                                 <option value="O-">O-</option>
                             </select>
-                            <label for="bloodGroup">Email</label>
+                            <label for="bloodGroup">Blood Group</label>
                         </div>
                     </div>
 
@@ -117,18 +117,24 @@
 
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input
-                                    id="visitPrice"
-                                    type="number"
-                                    name="visitPrice"
-                                    min="0"
-                                    max="5000"
-                                    th:field="*{visitPrice}"
-                                    class="form-control"
-                                    placeholder="Enter Contact"
+                            <select
+                                    class="form-select"
+                                    type="text"
+                                    id="roles"
+                                    name="roles"
+                                    th:field="*{roles}"
+                                    th:value="${userDTO.roles}"
                                     required="required"
+                                    onchange="hideField()"
                             >
-                            <label for="email">Visit Price</label>
+                                <!--<option selected>Open this select menu</option>-->
+                                <option th:each="role : ${roles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.roleType}"
+                                >
+                                </option>
+                            </select>
+                            <label for="roles">Role</label>
                         </div>
                     </div>
 
@@ -162,6 +168,105 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6 d-none" id="visitPriceDiv">
+                        <div class="form-floating">
+                            <input
+                                    id="visitPrice"
+                                    type="number"
+                                    name="visitPrice"
+                                    min="0"
+                                    max="5000"
+                                    th:field="*{visitPrice}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                            >
+                            <label for="email">Visit Price</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none" id="departmentDiv">
+                        <div class="form-floating">
+                            <select
+                                    class="form-select"
+                                    type="text"
+                                    id="department"
+                                    name="department"
+                                    th:field="*{department}"
+                                    th:value="${userDTO.department}"
+                            >
+                                <!--<option selected>Open this select menu</option>-->
+                                <option th:each="department : ${departments}"
+                                        th:value="${department.id}"
+                                        th:text="${department.name}"
+                                >
+                                </option>
+                            </select>
+                            <label for="bloodGroup">Department</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input
+                                    id="attachment"
+                                    type="file"
+                                    name="attachment"
+                                    th:field="*{attachment}"
+                                    class="form-control"
+                                    placeholder="Enter Image"
+                            >
+                            <label for="address">Profile Photo</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 d-none" id="visitedDaysDiv">
+                        <div class="form-floating">
+                            <select
+                                    th:type="Long"
+                                    class="form-select"
+                                    id="visitedDays"
+                                    name="visitedDays"
+                                    multiple
+                                    th:value="${userDTO.visitedDays}"
+                            >
+                                <option th:each="visitedDay : ${visitedDays}"
+                                        th:value="${visitedDay.id}"
+                                        th:text="${visitedDay.name}"
+                                >
+                                </option>
+                            </select>
+                            <label for="visitedDays" class="form-label">Authority User Roles</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none" id="startingTimeDiv">
+                        <div class="form-floating">
+                            <input
+                                    id="startingTime"
+                                    type="time"
+                                    name="startingTime"
+                                    th:field="*{startingTime}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                            >
+                            <label for="email">Starting Time</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-none" id="endingTimeDiv">
+                        <div class="form-floating">
+                            <input
+                                    id="endingTime"
+                                    type="time"
+                                    name="endingTime"
+                                    th:field="*{endingTime}"
+                                    class="form-control"
+                                    placeholder="Enter Contact"
+                            >
+                            <label for="email">Ending Time</label>
+                        </div>
+                    </div>
+
                     <div class="col-6">
                         <button class="btn btn-danger w-100 py-3" type="reset">Cancel</button>
                     </div>
@@ -173,6 +278,42 @@
         </div>
     </div>
     <!-- registration End -->
+
+    <script>
+        const hideField = () => {
+            const roleField = document.getElementById("roles");
+            const visitPriceDiv = document.getElementById("visitPriceDiv");
+            const departmentDiv = document.getElementById("departmentDiv");
+            const visitedDaysDiv = document.getElementById("visitedDaysDiv");
+            const startingTimeDiv = document.getElementById("startingTimeDiv");
+            const endingTimeDiv = document.getElementById("endingTimeDiv");
+
+            if (roleField && roleField.value === "3") {
+                if (visitPriceDiv.classList.contains("d-none")) {
+                    visitPriceDiv.classList.remove("d-none");
+                }
+                if (departmentDiv.classList.contains("d-none")) {
+                    departmentDiv.classList.remove("d-none");
+                }
+                if (visitedDaysDiv.classList.contains("d-none")) {
+                    visitedDaysDiv.classList.remove("d-none");
+                }
+                if (startingTimeDiv.classList.contains("d-none")) {
+                    startingTimeDiv.classList.remove("d-none");
+                }
+                if (endingTimeDiv.classList.contains("d-none")) {
+                    endingTimeDiv.classList.remove("d-none");
+                }
+            } else {
+                visitPriceDiv.classList.add("d-none");
+                departmentDiv.classList.add("d-none");
+                visitedDaysDiv.classList.add("d-none");
+                startingTimeDiv.classList.add("d-none");
+                endingTimeDiv.classList.add("d-none");
+            }
+        }
+    </script>
+
 </section>
 
 </body>

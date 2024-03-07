@@ -27,7 +27,7 @@ services:
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: mss_hms
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - /home/tanver/Documents/Software/Backup-DB/postgres:/var/lib/postgresql/data
 
 volumes:
   pg-data: { }
